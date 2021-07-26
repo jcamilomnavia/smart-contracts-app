@@ -3,6 +3,9 @@ import { connectRouter } from 'connected-react-router';
 import { persistReducer } from 'redux-persist';
 import { reducer as form } from 'redux-form';
 
+import nav from 'modules/nav/reducer';
+import auth from 'modules/auth/reducer';
+
 import { authPersistConfig, rootPersistConfig } from './persistor';
 import history from './history';
 
@@ -12,6 +15,8 @@ const appReducer = combineReducers({
   form,
 
   // app
+  auth: persistReducer(authPersistConfig, auth),
+  nav,
 });
 
 const actions = [];

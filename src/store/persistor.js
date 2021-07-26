@@ -4,15 +4,15 @@ import localForage from 'localforage';
 const isDebug = process.env.NODE_ENV !== 'production';
 
 localForage.config({
-  name: 'Eeact bBoilerplate',
-  storeName: 'react-boilerplate',
+  name: 'FA - Real State',
+  storeName: 'fa-real-state',
 });
 
 export const rootPersistConfig = {
   key: 'root',
   storage: localForage,
   debug: isDebug,
-  whitelist: [],
+  whitelist: ['me'],
 };
 
 export const authPersistConfig = {
