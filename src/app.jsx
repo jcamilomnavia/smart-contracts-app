@@ -13,7 +13,6 @@ const App = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <SdkLoader>
-        <h1>Hello</h1>
         <ConnectedRouter history={history}>
           <Routes store={store} routes={routesConfig} />
         </ConnectedRouter>
