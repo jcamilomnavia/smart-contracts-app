@@ -1,0 +1,58 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true,
+      "jest": true
+  },
+  "extends": [
+      "airbnb",
+      "airbnb/hooks",
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:react/recommended",
+
+      "plugin:jsx-a11y/strict",
+      "plugin:prettier/recommended",
+      "plugin:react-redux/recommended",
+      "plugin:redux-saga/recommended",
+
+      "prettier",
+      "prettier/react"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": false }],
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": ["draft"]
+    }],
+    "redux-saga/no-unhandled-errors": "off"
+  },
+  "plugins": [
+    "import",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "prettier",
+    "react-redux",
+    "redux-saga"
+  ],
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true
+  },
+  "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": ["src"],
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+      }
+  }
+}
