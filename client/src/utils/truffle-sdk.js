@@ -39,6 +39,10 @@ const TruffleSDK = {
     return TruffleSDK._error;
   },
 
+  getWeb3: () => {
+    return TruffleSDK._web3;
+  },
+
   runExample: async () => {
     const { accounts, contract } = TruffleSDK;
     await contract.methods.set(5).send({ from: accounts[0] });
