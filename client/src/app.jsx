@@ -4,7 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
 import SdkLoader from 'views/components/sdk-loader';
 import getWeb3 from './getWeb3';
-import SimpleStorageContract from './contracts/SimpleStorage.json';
+import p2Contract from './contracts/P2.json';
 
 import Routes from 'routes';
 import routesConfig from 'routes/config';
@@ -19,18 +19,28 @@ class App extends Component {
       const web3 = await getWeb3();
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = SimpleStorageContract.networks[networkId];
+      const deployedNetwork = p2Contract.networks[networkId];
       const instance = new web3.eth.Contract(
-        SimpleStorageContract.abi,
+        p2Contract.abi,
         deployedNetwork && deployedNetwork.address
       );
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
+      this.setState({ web3, accounts, contract: instance });
     } catch (error) {
       alert(
         `Failed to load web3, accounts, or contract. Check console for details.`
       );
       console.error(error);
     }
+  };
+
+  createTask = async (energy, price) => {
+    const { accounts, contract } = this.state;
+    await contract.methods.createTask(energy, price).send({ from: accounts[0] });
+  };
+
+  findBestBuy = async (id) => {
+    const { accounts, contract } = this.state;
+    await contract.methods.findBestBuy(id).send({ from: accounts[0] });
   };
 
   runExample = async () => {
